@@ -1,58 +1,118 @@
-/* Initialement caché */
-.hidden {
-    display: none;
-}
-
-/* Page de départ */
-.content {
+/* 🌿 Fond animé */
+body {
+    margin: 0;
+    overflow: hidden;
+    background: url('https://i.imgur.com/5XfxW2T.jpg') repeat-x center;
+    background-size: cover;
+    animation: scrollBackground 60s linear infinite;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
+}
+
+/* Animation du ciel */
+@keyframes scrollBackground {
+    from { background-position: 0 0; }
+    to { background-position: -2000px 0; }
+}
+
+/* 🌳 Herbe et arbre */
+.grass {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background: url('https://i.imgur.com/9HpL1QG.png') repeat-x;
+    background-size: cover;
+    animation: swayGrass 3s ease-in-out infinite alternate;
+}
+
+@keyframes swayGrass {
+    0% { transform: skewX(2deg); }
+    100% { transform: skewX(-2deg); }
+}
+
+.tree {
+    position: absolute;
+    bottom: 50px;
+    width: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: swayTree 5s ease-in-out infinite alternate;
+}
+
+@keyframes swayTree {
+    0% { transform: translateX(-50%) rotate(1deg); }
+    100% { transform: translateX(-50%) rotate(-1deg); }
+}
+
+/* 🌸 Pétales */
+.petal {
+    position: absolute;
+    top: -50px;
+    width: 25px;
+    height: 25px;
+    background: url('https://i.imgur.com/OxjXbvy.png') no-repeat center/contain;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.9; }
+    100% { transform: translateY(100vh) translateX(30px) rotate(360deg); opacity: 0; }
+}
+
+/* 🎤 Question et boutons */
+.question {
+    position: absolute;
     text-align: center;
-}
-
-/* Le bouton Yes */
-.yes-btn {
-    background-color: pink;
     color: white;
-    font-size: 20px;
-    padding: 15px 30px;
-    border: none;
-    cursor: pointer;
+    font-size: 30px;
+    font-weight: bold;
 }
 
-/* Cœurs animés */
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+}
+
+#yes { background-color: pink; color: white; }
+#no { background-color: red; color: white; position: absolute; }
+
+/* 💖 Animation du grand cœur */
+.hidden { display: none; }
+
 .hearts-container {
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100vh;
-    pointer-events: none;
 }
 
 .heart {
     position: absolute;
     width: 30px;
     height: 30px;
-    background-color: pink;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background: url('https://i.imgur.com/h4zXABw.png') no-repeat center/contain;
     animation: float 5s ease-in-out infinite;
 }
 
-/* Animation des cœurs */
 @keyframes float {
-    0% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-200px) rotate(180deg);
-    }
-    100% {
-        transform: translateY(0) rotate(360deg);
-    }
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-200px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
 }
 
-/* Le grand cœur formé et le message */
+/* Le grand cœur final */
 .heart-message {
     font-size: 40px;
     color: white;
@@ -63,15 +123,10 @@
     transform: translate(-50%, -50%);
     font-weight: bold;
     opacity: 0;
-    z-index: 10;
     animation: fadeInMessage 2s forwards;
 }
 
 @keyframes fadeInMessage {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
